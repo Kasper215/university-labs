@@ -1,0 +1,20 @@
+[
+  {
+    "Id": 1,
+    "FullName": "\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440",
+    "Position": "\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440",
+    "Contacts": "admin"
+  },
+  {
+    "Id": 2,
+    "FullName": "\u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440",
+    "Position": "\u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440",
+    "Contacts": "manager"
+  },
+  {
+    "Id": 3,
+    "FullName": "\u041F\u0435\u0442\u0440\u043E\u0432",
+    "Position": "\u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440",
+    "Contacts": "manager"
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "Id": 1,
+    "Article": "1",
+    "Description": "1",
+    "Price": 234,
+    "PhotoPath": ""
+  },
+  {
+    "Id": 2,
+    "Article": "2",
+    "Description": "2",
+    "Price": 444,
+    "PhotoPath": ""
+  }
+]

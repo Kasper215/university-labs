@@ -1,0 +1,162 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\user\\source\\repos\\trpolab\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AFB34ACF-8E68-4BF3-A7F5-3B6C426F04FD}|trpolab\\trpolab.csproj|c:\\users\\user\\source\\repos\\trpolab\\trpolab\\entities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFB34ACF-8E68-4BF3-A7F5-3B6C426F04FD}|trpolab\\trpolab.csproj|solutionrelative:trpolab\\entities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFB34ACF-8E68-4BF3-A7F5-3B6C426F04FD}|trpolab\\trpolab.csproj|c:\\users\\user\\source\\repos\\trpolab\\trpolab\\datarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFB34ACF-8E68-4BF3-A7F5-3B6C426F04FD}|trpolab\\trpolab.csproj|solutionrelative:trpolab\\datarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFB34ACF-8E68-4BF3-A7F5-3B6C426F04FD}|trpolab\\trpolab.csproj|c:\\users\\user\\source\\repos\\trpolab\\trpolab\\forms.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFB34ACF-8E68-4BF3-A7F5-3B6C426F04FD}|trpolab\\trpolab.csproj|solutionrelative:trpolab\\forms.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFB34ACF-8E68-4BF3-A7F5-3B6C426F04FD}|trpolab\\trpolab.csproj|C:\\Users\\user\\source\\repos\\trpolab\\trpolab\\forms.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AFB34ACF-8E68-4BF3-A7F5-3B6C426F04FD}|trpolab\\trpolab.csproj|solutionrelative:trpolab\\forms.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFB34ACF-8E68-4BF3-A7F5-3B6C426F04FD}|trpolab\\trpolab.csproj|c:\\users\\user\\source\\repos\\trpolab\\trpolab\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFB34ACF-8E68-4BF3-A7F5-3B6C426F04FD}|trpolab\\trpolab.csproj|solutionrelative:trpolab\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFB34ACF-8E68-4BF3-A7F5-3B6C426F04FD}|trpolab\\trpolab.csproj|c:\\users\\user\\source\\repos\\trpolab\\trpolab\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFB34ACF-8E68-4BF3-A7F5-3B6C426F04FD}|trpolab\\trpolab.csproj|solutionrelative:trpolab\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFB34ACF-8E68-4BF3-A7F5-3B6C426F04FD}|trpolab\\trpolab.csproj|c:\\users\\user\\source\\repos\\trpolab\\trpolab\\loginform.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
+      "RelativeMoniker": "D:0:0:{AFB34ACF-8E68-4BF3-A7F5-3B6C426F04FD}|trpolab\\trpolab.csproj|solutionrelative:trpolab\\loginform.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFB34ACF-8E68-4BF3-A7F5-3B6C426F04FD}|trpolab\\trpolab.csproj|c:\\users\\user\\source\\repos\\trpolab\\trpolab\\clientsform.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
+      "RelativeMoniker": "D:0:0:{AFB34ACF-8E68-4BF3-A7F5-3B6C426F04FD}|trpolab\\trpolab.csproj|solutionrelative:trpolab\\clientsform.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AFB34ACF-8E68-4BF3-A7F5-3B6C426F04FD}|trpolab\\trpolab.csproj|C:\\Users\\user\\source\\repos\\trpolab\\trpolab\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AFB34ACF-8E68-4BF3-A7F5-3B6C426F04FD}|trpolab\\trpolab.csproj|solutionrelative:trpolab\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\trpolab\\trpolab\\Program.cs",
+              "RelativeDocumentMoniker": "trpolab\\Program.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\trpolab\\trpolab\\Program.cs",
+              "RelativeToolTip": "trpolab\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-31T13:07:20.481Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LoginForm.resx",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\trpolab\\trpolab\\LoginForm.resx",
+              "RelativeDocumentMoniker": "trpolab\\LoginForm.resx",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\trpolab\\trpolab\\LoginForm.resx",
+              "RelativeToolTip": "trpolab\\LoginForm.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-10-31T13:01:42.69Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Entities.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\trpolab\\trpolab\\Entities.cs",
+              "RelativeDocumentMoniker": "trpolab\\Entities.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\trpolab\\trpolab\\Entities.cs",
+              "RelativeToolTip": "trpolab\\Entities.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAywFAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-31T13:01:15.425Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ClientsForm.resx",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\trpolab\\trpolab\\ClientsForm.resx",
+              "RelativeDocumentMoniker": "trpolab\\ClientsForm.resx",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\trpolab\\trpolab\\ClientsForm.resx",
+              "RelativeToolTip": "trpolab\\ClientsForm.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-10-31T13:01:06.601Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Forms.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\trpolab\\trpolab\\Forms.cs",
+              "RelativeDocumentMoniker": "trpolab\\Forms.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\trpolab\\trpolab\\Forms.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "trpolab\\Forms.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-31T12:57:23.739Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Forms.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\trpolab\\trpolab\\Forms.cs",
+              "RelativeDocumentMoniker": "trpolab\\Forms.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\trpolab\\trpolab\\Forms.cs",
+              "RelativeToolTip": "trpolab\\Forms.cs",
+              "ViewState": "AgIAAEEDAAAAAAAAAAAYwGYDAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-28T21:02:13.615Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\trpolab\\trpolab\\Form1.cs",
+              "RelativeDocumentMoniker": "trpolab\\Form1.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\trpolab\\trpolab\\Form1.cs",
+              "RelativeToolTip": "trpolab\\Form1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-28T21:02:10.712Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DataRepository.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\trpolab\\trpolab\\DataRepository.cs",
+              "RelativeDocumentMoniker": "trpolab\\DataRepository.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\trpolab\\trpolab\\DataRepository.cs",
+              "RelativeToolTip": "trpolab\\DataRepository.cs",
+              "ViewState": "AgIAAIgAAAAAAAAAAAAqwKUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-28T20:28:48.608Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\trpolab\\trpolab\\Form1.cs",
+              "RelativeDocumentMoniker": "trpolab\\Form1.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\trpolab\\trpolab\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "trpolab\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-28T18:50:59.492Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
