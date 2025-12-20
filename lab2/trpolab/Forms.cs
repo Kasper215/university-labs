@@ -47,17 +47,17 @@ public class ClientsForm : Form
         var dlg = new ClientEditForm();
         if (dlg.ShowDialog() == DialogResult.OK)
         {
-            var nextId = DataRepository.Clients.Any() ? DataRepository.Clients.Max(c => c.Id) + 1 : 1;
-            DataRepository.Clients.Add(new Client { Id = nextId, FullName = dlg.FullName, Contacts = dlg.Contacts });
+            DataRepository.Clients.Add(new Client { Id = GetNextClientId(), FullName = dlg.FullName, Contacts = dlg.Contacts });
             DataRepository.SaveAll();
             LoadClients();
         }
     }
+    private int GetNextClientId() => DataRepository.Clients.Any() ? DataRepository.Clients.Max(c => c.Id) + 1 : 1;
     private void EditBtn_Click(object sender, EventArgs e)
     {
         var cl = GetSelectedClient();
         if (cl == null) { MessageBox.Show("Не выбран клиент!"); return; }
-        var dlg = new ClientEditForm(cl.FullName, cl.Contacts);
+        var dlg = new ClientEditForm(cl.FullName) { Contacts = cl.Contacts };
         if (dlg.ShowDialog() == DialogResult.OK)
         {
             cl.FullName = dlg.FullName;
@@ -81,10 +81,10 @@ public class ClientsForm : Form
 
 public class ClientEditForm : Form
 {
-    public string FullName => nameBox.Text;
-    public string Contacts => contactsBox.Text;
+    public string FullName { get => nameBox.Text; set => nameBox.Text = value; }
+    public string Contacts { get => contactsBox.Text; set => contactsBox.Text = value; }
     TextBox nameBox, contactsBox;
-    public ClientEditForm(string name = "", string contacts = "")
+    public ClientEditForm(string name = "")
     {
         this.Text = "Клиент";
         this.Width = 350;
@@ -92,7 +92,7 @@ public class ClientEditForm : Form
         Label nameLbl = new Label { Text = "ФИО", Left = 10, Top = 20, Width = 80 };
         nameBox = new TextBox { Left = 100, Top = 20, Width = 200, Text = name };
         Label contLbl = new Label { Text = "Контакты", Left = 10, Top = 60, Width = 80 };
-        contactsBox = new TextBox { Left = 100, Top = 60, Width = 200, Text = contacts };
+        contactsBox = new TextBox { Left = 100, Top = 60, Width = 200 };
         Button okBtn = new Button { Text = "OK", Left = 60, Top = 110, Width = 80 };
         Button cancelBtn = new Button { Text = "Отмена", Left = 180, Top = 110, Width = 80 };
         okBtn.Click += (s,e) => { this.DialogResult = DialogResult.OK; this.Close(); };
@@ -157,7 +157,8 @@ public class OrdersForm : Form
         if (dlg.ShowDialog() == DialogResult.OK)
         {
             var nextId = DataRepository.Orders.Any() ? DataRepository.Orders.Max(o => o.Id) + 1 : 1;
-            var ord = new Order { Id = nextId, Client = dlg.SelectedClient, Manager = dlg.SelectedManager, Items = dlg.SelectOrderItems(), Amount = dlg.CalcAmount(), Status = "Создан", History = new List<OrderHistory> { new OrderHistory { DateTime = DateTime.Now, Status = "Создан", Comment = "Создание заказа" } } };
+            var ord = new Order { Id = nextId, Client = dlg.SelectedClient, Manager = dlg.SelectedManager, Items = dlg.Items.ToList(), Status = "Создан", History = new List<OrderHistory> { new OrderHistory { DateTime = DateTime.Now, Status = "Создан", Comment = "Создание заказа" } } };
+            ord.RecalculateAmount();
             DataRepository.Orders.Add(ord);
             ord.Client?.Orders.Add(ord);
             DataRepository.SaveAll();
@@ -174,8 +175,8 @@ public class OrdersForm : Form
         {
             ord.Client = dlg.SelectedClient;
             ord.Manager = dlg.SelectedManager;
-            ord.Items = dlg.SelectOrderItems();
-            ord.Amount = dlg.CalcAmount();
+            ord.Items = dlg.Items.ToList();
+            ord.RecalculateAmount();
             DataRepository.SaveAll();
             LoadOrders();
         }
@@ -327,8 +328,7 @@ public class OrderEditForm : Form
         orderBox.DataSource = null;
         orderBox.DataSource = items.Select(i=> (i.Item is Product p ? $"Товар: {p.Description}" : $"Материал: {((Material)i.Item).Article}") + $", кол-во: {i.Quantity}, цена: {i.Price}").ToList();
     }
-    public List<OrderItem> SelectOrderItems() => items.ToList();
-    public decimal CalcAmount() => items.Sum(x=>x.Price * x.Quantity);
+    public List<OrderItem> Items => items;
 }
 
 public class OrderDetailsForm : Form

@@ -38,26 +38,31 @@
             Orders = new List<Order>();
             foreach (var dto in orderDtos)
             {
-                var ord = new Order
-                {
-                    Id = dto.Id,
-                    Client = Clients.FirstOrDefault(c => c.Id == dto.ClientId),
-                    Manager = Employees.FirstOrDefault(e => e.Id == dto.ManagerId),
-                    Status = dto.Status,
-                    Amount = dto.Amount,
-                    History = dto.History ?? new()
-                };
-                ord.Items = new List<OrderItem>();
-                foreach (var it in dto.Items ?? new())
-                {
-                    object itemObj = it.Kind == "Product"
-                        ? (object)Products.FirstOrDefault(p => p.Id == it.RefId)
-                        : (object)Materials.FirstOrDefault(m => m.Id == it.RefId);
-                    ord.Items.Add(new OrderItem { Id = it.Id, Item = itemObj, Quantity = it.Quantity, Price = it.Price });
-                }
-                Orders.Add(ord);
-                if (ord.Client != null) ord.Client.Orders.Add(ord);
+                RestoreOrderFromDto(dto);
             }
+        }
+
+        private static void RestoreOrderFromDto(OrderDto dto)
+        {
+            var ord = new Order
+            {
+                Id = dto.Id,
+                Client = Clients.FirstOrDefault(c => c.Id == dto.ClientId),
+                Manager = Employees.FirstOrDefault(e => e.Id == dto.ManagerId),
+                Status = dto.Status,
+                Amount = dto.Amount,
+                History = dto.History ?? new()
+            };
+            ord.Items = new List<OrderItem>();
+            foreach (var it in dto.Items ?? new())
+            {
+                object itemObj = it.Kind == "Product"
+                    ? (object)Products.FirstOrDefault(p => p.Id == it.RefId)
+                    : (object)Materials.FirstOrDefault(m => m.Id == it.RefId);
+                ord.Items.Add(new OrderItem { Id = it.Id, Item = itemObj, Quantity = it.Quantity, Price = it.Price });
+            }
+            Orders.Add(ord);
+            if (ord.Client != null) ord.Client.Orders.Add(ord);
         }
 
         public static void SaveAll()
@@ -90,23 +95,23 @@
             Write("orders.json", orderDtos);
         }
 
-        private static T? Read<T>(string file)
+        private static T? Read<T>(string fileName)
         {
-            var path = Path.Combine(DataDir, file);
-            if (!File.Exists(path)) return default;
-            var json = File.ReadAllText(path);
+            if (!File.Exists(Path.Combine(DataDir, fileName))) return default;
+            var json = File.ReadAllText(Path.Combine(DataDir, fileName));
             return JsonSerializer.Deserialize<T>(json, JsonOpts);
         }
 
-        private static void Write<T>(string file, T obj)
+        private static void Write<T>(string fileName, T obj)
         {
-            var path = Path.Combine(DataDir, file);
+            var path = Path.Combine(DataDir, fileName);
             var json = JsonSerializer.Serialize(obj, JsonOpts);
             File.WriteAllText(path, json);
         }
 
-        public static void InitTestData()
+        public static void InitTestData(int multiplier = 1)
         {
+            if (multiplier < 1) multiplier = 1;
             Users.Add(new User { Login = "admin", Password = "admin", FullName = "Администратор", Role = "Администратор" });
             Users.Add(new User { Login = "manager", Password = "manager", FullName = "Менеджер", Role = "Менеджер" });
             for (int i = 1; i <= 5; i++)

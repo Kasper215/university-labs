@@ -60,6 +60,11 @@ public class Order
     public string Status { get; set; } = string.Empty;
     public Employee Manager { get; set; }
     public List<OrderHistory> History { get; set; } = new();
+    
+    public void RecalculateAmount()
+    {
+        Amount = Items.Sum(x => x.Price * x.Quantity);
+    }
 }
 
 public class OrderItem
