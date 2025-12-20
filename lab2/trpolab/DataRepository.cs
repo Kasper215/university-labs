@@ -20,8 +20,7 @@
         public static void LoadAll()
         {
             Directory.CreateDirectory(DataDir);
-            bool any = File.Exists(Path.Combine(DataDir, "users.json"));
-            if (!any)
+            if (!File.Exists(Path.Combine(DataDir, "users.json")))
             {
                 InitTestData();
                 SaveAll();

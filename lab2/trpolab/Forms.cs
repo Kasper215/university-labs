@@ -260,7 +260,7 @@ public class OrderEditForm : Form
         {
             var baseId = 0;
             var created = DataRepository.Users
-                .Where(u => u.Role == "Менеджер" || u.Role == "Администратор")
+                .Where(u => IsManagerOrAdmin(u))
                 .Select((u, i) => new Employee { Id = baseId + i + 1, FullName = u.FullName, Position = u.Role, Contacts = u.Login })
                 .ToList();
             if (created.Any())
@@ -380,6 +380,7 @@ public class InventoryForm : Form
     private DataGridView grid;
     private Button addBtn, editBtn, deleteBtn, refreshBtn;
     private ComboBox typeBox;
+    private bool IsProductsMode => typeBox.SelectedIndex == 0;
     public InventoryForm()
     {
         this.Text = "Склад: товары и материалы";
@@ -408,85 +409,86 @@ public class InventoryForm : Form
     }
     private void LoadItems() {
         grid.DataSource = null;
-        if (typeBox.SelectedItem?.ToString().Contains("Това") ?? true) {
+        if (IsProductsMode) {
             grid.DataSource = DataRepository.Products.Select(p => new { p.Id, p.Article, p.Description, p.Price }).ToList();
         } else {
             grid.DataSource = DataRepository.Materials.Select(m => new { m.Id, m.Article, m.Quantity, m.Price }).ToList();
         }
     }
     private void AddBtn_Click(object sender, EventArgs e) {
-        if (typeBox.SelectedItem?.ToString().Contains("Това") ?? true) {
+        if (IsProductsMode) {
             var dlg = new ProductEditForm();
             if (dlg.ShowDialog() == DialogResult.OK) {
                 var nextId = DataRepository.Products.Any() ? DataRepository.Products.Max(x => x.Id) + 1 : 1;
                 DataRepository.Products.Add(new Product { Id = nextId, Article = dlg.Article, Description = dlg.Description, Price = dlg.Price });
-                DataRepository.SaveAll();
-                LoadItems();
-            }
+            } else return;
         } else {
             var dlg = new MaterialEditForm();
             if (dlg.ShowDialog() == DialogResult.OK) {
                 var nextId = DataRepository.Materials.Any() ? DataRepository.Materials.Max(x => x.Id) + 1 : 1;
                 DataRepository.Materials.Add(new Material { Id = nextId, Article = dlg.Article, Quantity = dlg.Quantity, Price = dlg.Price });
-                DataRepository.SaveAll();
-                LoadItems();
-            }
+            } else return;
         }
+        DataRepository.SaveAll();
+        LoadItems();
     }
     private object GetSelectedItem() {
         if (grid.SelectedRows.Count != 1) return null;
         return grid.SelectedRows[0].DataBoundItem;
     }
     private void EditBtn_Click(object sender, EventArgs e) {
-        if (typeBox.SelectedItem?.ToString().Contains("Това") ?? true) {
-            var obj = GetSelectedItem();
-            if (obj == null) { MessageBox.Show("Не выбрано!"); return; }
-            int id = (int)obj.GetType().GetProperty("Id").GetValue(obj);
+        var obj = GetSelectedItem();
+        if (obj == null) { MessageBox.Show("Не выбрано!"); return; }
+        int id = (int)obj.GetType().GetProperty("Id").GetValue(obj);
+        bool updated = false;
+
+        if (IsProductsMode) {
             var prod = DataRepository.Products.First(x => x.Id == id);
             var dlg = new ProductEditForm(prod.Article, prod.Description, prod.Price);
             if (dlg.ShowDialog() == DialogResult.OK) {
                 prod.Article = dlg.Article;
                 prod.Description = dlg.Description;
                 prod.Price = dlg.Price;
-                DataRepository.SaveAll();
-                LoadItems();
+                updated = true;
             }
         } else {
-            var obj = GetSelectedItem();
-            if (obj == null) { MessageBox.Show("Не выбрано!"); return; }
-            int id = (int)obj.GetType().GetProperty("Id").GetValue(obj);
             var mat = DataRepository.Materials.First(x => x.Id == id);
             var dlg = new MaterialEditForm(mat.Article, mat.Quantity, mat.Price);
             if (dlg.ShowDialog() == DialogResult.OK) {
                 mat.Article = dlg.Article;
                 mat.Quantity = dlg.Quantity;
                 mat.Price = dlg.Price;
-                DataRepository.SaveAll();
-                LoadItems();
+                updated = true;
             }
+        }
+        if (updated) {
+            DataRepository.SaveAll();
+            LoadItems();
         }
     }
     private void DeleteBtn_Click(object sender, EventArgs e) {
-        if (typeBox.SelectedItem?.ToString().Contains("Това") ?? true) {
-            var obj = GetSelectedItem();
-            if (obj == null) { MessageBox.Show("Не выбрано!"); return; }
-            int id = (int)obj.GetType().GetProperty("Id").GetValue(obj);
+        var obj = GetSelectedItem();
+        if (obj == null) { MessageBox.Show("Не выбрано!"); return; }
+        int id = (int)obj.GetType().GetProperty("Id").GetValue(obj);
+        bool confirmed = false;
+
+        if (IsProductsMode) {
             var prod = DataRepository.Products.First(x => x.Id == id);
             if (MessageBox.Show($"Удалить товар {prod.Description}?","Удалить",MessageBoxButtons.YesNo)==DialogResult.Yes) {
                 DataRepository.Products.Remove(prod);
-                DataRepository.SaveAll();
-                LoadItems();
+                confirmed = true;
             }
         } else {
-            var obj = GetSelectedItem();
-            if (obj == null) { MessageBox.Show("Не выбрано!"); return; }
-            int id = (int)obj.GetType().GetProperty("Id").GetValue(obj);
             var mat = DataRepository.Materials.First(x => x.Id == id);
             if (MessageBox.Show($"Удалить материал {mat.Article}?","Удалить",MessageBoxButtons.YesNo)==DialogResult.Yes) {
                 DataRepository.Materials.Remove(mat);
-                DataRepository.SaveAll();
-                LoadItems();
+                confirmed = true;
             }
+        }
+
+        if (confirmed) {
+            DataRepository.SaveAll();
+            LoadItems();
         }
     }
 }
