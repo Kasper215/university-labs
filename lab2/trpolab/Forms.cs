@@ -492,54 +492,72 @@ public class InventoryForm : Form
         }
     }
 }
-public class ProductEditForm : Form {
+
+// Базовый класс для форм редактирования (Pull Up Field, Pull Up Method)
+public abstract class BaseEditForm : Form {
+    protected TextBox artBox, priceBox;  // Pull Up Field: общие поля вынесены в базовый класс
+    
     public string Article => artBox.Text;
-    public string Description => descBox.Text;
     public decimal Price => decimal.TryParse(priceBox.Text, out var v) ? v : 0;
-    TextBox artBox, descBox, priceBox;
+    
+    // Pull Up Method: общий метод добавления кнопок OK/Отмена
+    protected void AddOkCancelButtons(int topPosition) {
+        Button okBtn = new Button { Text = "OK", Left = 60, Top = topPosition, Width = 80 };
+        Button cancelBtn = new Button { Text = "Отмена", Left = 180, Top = topPosition, Width = 80 };
+        okBtn.Click += (s,e) => { this.DialogResult=DialogResult.OK; this.Close(); };
+        cancelBtn.Click += (s,e) => { this.DialogResult=DialogResult.Cancel; this.Close(); };
+        this.Controls.Add(okBtn);
+        this.Controls.Add(cancelBtn);
+    }
+    
+    // Pull Up Method: общий метод добавления поля "Артикул"
+    protected void AddArticleField(string article) {
+        Label l1 = new Label{Text="Артикул",Left=10,Top=20,Width=80};
+        artBox = new TextBox{Left=100,Top=20,Width=200,Text=article};
+        this.Controls.Add(l1);
+        this.Controls.Add(artBox);
+    }
+    
+    // Pull Up Method: общий метод добавления поля "Цена"
+    protected void AddPriceField(int topPosition, decimal price) {
+        Label l3 = new Label{Text="Цена",Left=10,Top=topPosition,Width=80};
+        priceBox = new TextBox{Left=100,Top=topPosition,Width=200,Text=price.ToString()};
+        this.Controls.Add(l3);
+        this.Controls.Add(priceBox);
+    }
+}
+
+public class ProductEditForm : BaseEditForm {
+    public string Description => descBox.Text;
+    TextBox descBox;  // Push Down Field: специфичное поле осталось в подклассе
     public ProductEditForm(string article = "", string description = "", decimal price = 0) {
         this.Text = "Товар";
         this.Width = 350;
         this.Height = 220;
-        Label l1 = new Label{Text="Артикул",Left=10,Top=20,Width=80};
-        artBox = new TextBox{Left=100,Top=20,Width=200,Text=article};
+        AddArticleField(article);  // Использование метода из базового класса
         Label l2 = new Label{Text="Описание",Left=10,Top=60,Width=80};
         descBox = new TextBox{Left=100,Top=60,Width=200,Text=description};
-        Label l3 = new Label{Text="Цена",Left=10,Top=100,Width=80};
-        priceBox = new TextBox{Left=100,Top=100,Width=200,Text=price.ToString()};
-        Button okBtn = new Button { Text = "OK", Left = 60, Top = 150, Width = 80 };
-        Button cancelBtn = new Button { Text = "Отмена", Left = 180, Top = 150, Width = 80 };
-        okBtn.Click += (s,e) => { this.DialogResult=DialogResult.OK;this.Close(); };
-        cancelBtn.Click += (s,e) => { this.DialogResult=DialogResult.Cancel;this.Close(); };
-        this.Controls.Add(l1);this.Controls.Add(artBox);
-        this.Controls.Add(l2);this.Controls.Add(descBox);
-        this.Controls.Add(l3);this.Controls.Add(priceBox);
-        this.Controls.Add(okBtn);this.Controls.Add(cancelBtn);
+        this.Controls.Add(l2);
+        this.Controls.Add(descBox);
+        AddPriceField(100, price);  // Использование метода из базового класса
+        AddOkCancelButtons(150);  // Использование метода из базового класса
     }
 }
-public class MaterialEditForm : Form {
-    public string Article => artBox.Text;
+
+public class MaterialEditForm : BaseEditForm {
     public int Quantity => int.TryParse(quantityBox.Text, out var v) ? v : 0;
-    public decimal Price => decimal.TryParse(priceBox.Text, out var v) ? v : 0;
-    TextBox artBox, quantityBox, priceBox;
+    TextBox quantityBox;  // Push Down Field: специфичное поле осталось в подклассе
     public MaterialEditForm(string article = "", int quantity = 0, decimal price = 0) {
         this.Text = "Материал";
         this.Width = 350;
         this.Height = 250;
-        Label l1 = new Label{Text="Артикул",Left=10,Top=20,Width=80};
-        artBox = new TextBox{Left=100,Top=20,Width=200,Text=article};
+        AddArticleField(article);  // Использование метода из базового класса
         Label l2 = new Label{Text="Остаток",Left=10,Top=60,Width=80};
         quantityBox = new TextBox{Left=100,Top=60,Width=200,Text=quantity.ToString()};
-        Label l3 = new Label{Text="Цена",Left=10,Top=100,Width=80};
-        priceBox = new TextBox{Left=100,Top=100,Width=200,Text=price.ToString()};
-        Button okBtn = new Button { Text = "OK", Left = 60, Top = 180, Width = 80 };
-        Button cancelBtn = new Button { Text = "Отмена", Left = 180, Top = 180, Width = 80 };
-        okBtn.Click += (s,e) => { this.DialogResult=DialogResult.OK;this.Close(); };
-        cancelBtn.Click += (s,e) => { this.DialogResult=DialogResult.Cancel;this.Close(); };
-        this.Controls.Add(l1);this.Controls.Add(artBox);
-        this.Controls.Add(l2);this.Controls.Add(quantityBox);
-        this.Controls.Add(l3);this.Controls.Add(priceBox);
-        this.Controls.Add(okBtn);this.Controls.Add(cancelBtn);
+        this.Controls.Add(l2);
+        this.Controls.Add(quantityBox);
+        AddPriceField(100, price);  // Использование метода из базового класса
+        AddOkCancelButtons(180);  // Использование метода из базового класса
     }
 }
 
