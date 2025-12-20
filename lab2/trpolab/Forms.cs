@@ -329,6 +329,7 @@ public class OrderEditForm : Form
         orderBox.DataSource = items.Select(i=> (i.Item is Product p ? $"Товар: {p.Description}" : $"Материал: {((Material)i.Item).Article}") + $", кол-во: {i.Quantity}, цена: {i.Price}").ToList();
     }
     public List<OrderItem> Items => items;
+    private bool IsManagerOrAdmin(User u) => u.Role == "Менеджер" || u.Role == "Администратор";
 }
 
 public class OrderDetailsForm : Form

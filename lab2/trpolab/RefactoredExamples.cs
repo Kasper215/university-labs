@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+#pragma warning disable CS0649 // Field is never assigned
+#pragma warning disable CS0414 // Field is assigned but never used
+
 // Рефакторинг примеров из Приложения А (govnokod.ru)
 namespace RefactoredExamples
 {
@@ -12,8 +15,8 @@ namespace RefactoredExamples
     // Было: if(mod==true) с дублированием кода
     public class Example1_SetMode
     {
-        private Label label1;
-        private Button button1, button2, button3, button4;
+        private Label label1 = null!;
+        private Button button1 = null!, button2 = null!, button3 = null!, button4 = null!;
 
         // БЫЛО (плохо):
         private void set_mode_BAD(bool mod)
@@ -54,7 +57,7 @@ namespace RefactoredExamples
     // Было: бессмысленный switch, возвращающий одно и то же
     public class Example2_DriverStatus
     {
-        private Dictionary<ClientStatus, string> m_driverStatusNames;
+        private Dictionary<ClientStatus, string> m_driverStatusNames = new();
 
         public enum ClientStatus { Unknown, Free, Busy, InWay, Work, Break, Alarm }
         public class Driver { public ClientStatus Status { get; set; } }
@@ -270,8 +273,8 @@ namespace RefactoredExamples
     // Было: fl_end = true в обеих ветках
     public class Example10_ConsolidateConditional
     {
-        private int Connected;
-        private bool fl_end;
+        private int Connected = 0;
+        private bool fl_end = false;
 
         // БЫЛО (плохо):
         private void CheckConnection_BAD()
@@ -400,7 +403,7 @@ namespace RefactoredExamples
     // Было: сложная работа с массивами char
     public class Example15_GenerateEmail
     {
-        private string PersonName;
+        private string PersonName = "";
 
         // БЫЛО (плохо):
         private string GenerateEmail_BAD()
@@ -568,7 +571,7 @@ namespace RefactoredExamples
     // Было: цикл с флагом first для конкатенации
     public class Example21_JoinContacts
     {
-        private TextBox txtContacts;
+        private TextBox txtContacts = null!;
 
         // БЫЛО (плохо):
         private void JoinContacts_BAD(string[] contacts)
